@@ -30,32 +30,42 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 setenv PATH "/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/root/bin"
+
 set WM = "NONE"
+
 if ($#argv == 0) then
 echo "FreeBSD 5 Minute Desktop Build"
 echo "Usage: $argv[0] i3 or fluxbox"
 exit 13
 endif
+
 if ($argv[1] == "fluxbox") then
 set WM = "fluxbox"
 endif
+
 if ($argv[1] == "i3") then
 set WM = "i3"
 endif
+
 if ("$WM" == "NONE") then
 echo "FreeBSD 5 Minute Desktop Build"
 echo "Usage: $argv[0] i3 or fluxbox"
 exit 13
 endif
+
 #pkgng needs to be bootstrapped. The
 #work around is to install the port
 cd /usr/ports/ports-mgmt/pkg
 make -DBATCH install clean
+
 #Update Packages
 pkg update -f
+
 #Install everything
 pkg install -y xorg-server xinit xscreensaver xf86-input-keyboard xf86-input-mouse
+
 #WM Specific i3 or fluxbox
 if ( $WM == "i3" ) then
 pkg install -y i3 i3lock i3status
@@ -70,6 +80,7 @@ echo "/usr/local/bin/fluxbox" >> /usr/home/$dir/.xinitrc
 chown $dir /usr/home/$dir/.xinitrc
 end
 endif
+
 #If running on Vbox, setup services
 lling failsafe drivers
 set VBOX = `dmesg|grep -oe VBOX|uniq`
@@ -83,16 +94,20 @@ else
 #Otherwise, install failsafe drivers with vesa
 pkg install -y xorg-drivers
 endif
+
 #Other stuff to make life eaiser
 pkg install -y lxterminal zsh sudo chromium nano pcmanfm leafpad
+
 #necessary for linux compat and chrome/firefox
 echo 'sem_load="YES"' >> /boot/loader.conf
 echo 'linux_load="YES"' >> /boot/loader.conf
+
 #rc updates for X
 cat << EOF >> /etc/rc.conf
 hald_enable="YES"
 dbus_enable="YES"
 EOF
+
 #sysctl values for chromium,audio and disabling CTRL+ALT+DELETE
 cat << EOF >> /etc/sysctl.conf
 #Required for chrome
@@ -103,13 +118,6 @@ hw.syscons.kbd_reboot=0
 dev.pcm.0.play.vchanrate=44100
 dev.pcm.0.rec.vchanrate=44100
 EOF
+
 #reboot for all modules and services to start
 reboot
-
-    Status
-    API
-    Training
-    Shop
-    Blog
-    About
-
