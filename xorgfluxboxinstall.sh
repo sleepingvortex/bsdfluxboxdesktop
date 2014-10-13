@@ -5,7 +5,7 @@
 # Version: 0.1
 #
 # Based on FreeBSD 10 default install with ports
-# Tested
+# 
 #
 # Copyright (c) 2014, Stan McLaren
 # All rights reserved.
@@ -36,7 +36,7 @@ setenv PATH "/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local
 set WM = "NONE"
 
 if ($#argv == 0) then
-echo "FreeBSD 5 Minute Desktop Build"
+echo "FreeBSD10 Fluxbox Desktop Build"
 echo "Usage: $argv[0] i3 or fluxbox"
 exit 13
 endif
@@ -50,7 +50,7 @@ set WM = "i3"
 endif
 
 if ("$WM" == "NONE") then
-echo "FreeBSD 5 Minute Desktop Build"
+echo "FreeBSD10 Fluxbox Desktop Build"
 echo "Usage: $argv[0] i3 or fluxbox"
 exit 13
 endif
