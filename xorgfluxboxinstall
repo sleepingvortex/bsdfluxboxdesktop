@@ -1,11 +1,11 @@
 #!/bin/csh
 #
-# FreeBSD 5 Minute Desktop Build
+# FreeBSD10 Fluxbox Desktop Build
 #
-# Version: 0.6
+# Version: 0.1
 #
 # Based on FreeBSD 10 default install with ports
-# Tested on VirtualBox with Guest Drivers Installed
+# Tested
 #
 # Copyright (c) 2014, Stan McLaren
 # All rights reserved.
